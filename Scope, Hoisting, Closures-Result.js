@@ -1,14 +1,15 @@
 // 1.	Create	a	function	runningAverage()	that	returns	a	callable	function	object.	Update	the
 // series	with	each	given	value	and	calculate	the	current	average.
 
-function runningAverage() {
-  let allNumbers = [];
-  function callableFunc(number) {
-    allNumbers.push(number);
-    return allNumbers.reduce((acc, val) => acc + val, 0) / allNumbers.length;
-  }
-  return callableFunc;
-}
+let runningAverage = () => {
+  let sum = 0;
+  let count = 0;
+  return (num) => {
+    sum += num;
+    count++;
+    return sum / count;
+  };
+};
 
 // rAvg = runningAverage();
 // rAvg(10) = 10.0;
@@ -17,21 +18,26 @@ function runningAverage() {
 
 // 2. Write a sum function which will work properly when invoked using syntax below.
 
-function sum(...arg) {
-  let total = arg;
-  if (arg.length === 1) {
-    return function add(a) {
-      total.push(a);
-      console.log(total.reduce((acc, val) => acc + val));
-      return add;
-    };
+let sum = (a, ...args) => {
+  if (args.length) {
+    return args.reduce((acc, el) => acc + el, a);
   }
-  if (arg.length > 1) {
-    let total2 = arg.reduce((acc, val) => acc + val);
-    return console.log(total2);
-  }
-}
 
-// sum(2,3); // Outputs 5
-// sum(2)(3); // Outputs 5
-// sum(1)(2)(3)(4); // Outputs 10
+  let total = a;
+
+  const innerFn = (b, ...args) => {
+    if (args.length) {
+      total += args.reduce((acc, el) => acc + el);
+    }
+    total += b;
+    return innerFn;
+  };
+
+  innerFn.toString = () => total;
+
+  return innerFn;
+};
+
+//console.log(sum(2, 3)); // Outputs 5
+//console.log(+sum(2)(3)); // Outputs 5
+//console.log(+sum(1)(2)(3)(4)); // Outputs 10
