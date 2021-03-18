@@ -1,13 +1,14 @@
-function NamedOne(first, last) {
-  let user = {
-    firstName: first,
-    lastName: last,
+function NamedOne(firstName, lastName) {
+  const user = {
+    firstName,
+    lastName,
     get fullName() {
       return `${this.firstName} ${this.lastName}`;
     },
     set fullName(value) {
-      if (value.split(" ").length === 2) {
-        [this.firstName, this.lastName] = value.split(" ");
+      const fullNameParts = value.split(" ");
+      if (fullNameParts.length === 2) {
+        [this.firstName, this.lastName] = fullNameParts;
       }
       return value;
     },
