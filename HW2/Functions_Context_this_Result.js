@@ -1,19 +1,17 @@
 function NamedOne(firstName, lastName) {
-  const user = {
-    firstName,
-    lastName,
-    get fullName() {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  Object.defineProperty(this, "fullName", {
+    get() {
       return `${this.firstName} ${this.lastName}`;
     },
-    set fullName(value) {
-      const fullNameParts = value.split(" ");
-      if (fullNameParts.length === 2) {
-        [this.firstName, this.lastName] = fullNameParts;
+
+    set(value) {
+      if (value.split(" ").length === 2) {
+        [this.firstName, this.lastName] = value.split(" ");
       }
-      return value;
     },
-  };
-  return user;
+  });
 }
 
 // var namedOne = new NamedOne("Naomi", "Wang");
