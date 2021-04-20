@@ -8,11 +8,11 @@ class MyPromise {
   queue = [];
 
   resolve() {
-    setTimeout(() => {
+    queueMicrotask(() => {
       this.queue.map((fn) => {
         fn();
       });
-    }, 100);
+    });
   }
 
   synchThen(fn) {
@@ -53,11 +53,11 @@ class ReversePromise {
   queue = [];
 
   resolve() {
-    setTimeout(() => {
+    queueMicrotask(() => {
       this.queue.reverse().map((fn) => {
         fn();
       });
-    }, 0);
+    });
   }
 
   then(fn) {
