@@ -15,14 +15,13 @@ const random = () => {
   }
   if (randomNum >= 60) {
     throw new ValidationError("Oops! Too old =(");
-  } else {
-    console.log("Welcome =)");
   }
-  return randomNum;
+  const mess = "Welcome =)";
+  return mess;
 };
 
 try {
-  random();
+  console.log(random());
 } catch (err) {
   console.log(err.name);
   console.log(err.message);

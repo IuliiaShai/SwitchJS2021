@@ -1,0 +1,23 @@
+body {
+  background: #c9acf7;
+  margin: 0;
+  padding: 0;
+  width: 1000px;
+  height: 1000px;
+  text-align: center;
+}
+
+#myTable {
+  padding: 30px;
+}
+
+table td {
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  background-color: #a381e0;
+  padding: 6px;
+}
+
+.highlight {
+  background: red;
+}
