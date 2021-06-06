@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", createTable);
 
-const draggableSymbol = `<div id="girl" draggable="true">${String.fromCodePoint(
-  0x1f478
-)}</div>`;
+const draggableSymbol = `<div id="dimond" draggable="true">💎</div>`;
+const fire = String.fromCodePoint(0x1f525);
 
 function createTable() {
   const table = document.getElementById("myTable");
@@ -11,31 +10,36 @@ function createTable() {
     row.style.back;
     for (let cellNum = 0; cellNum < 100; cellNum++) {
       let newCell = row.insertCell();
-      newCell.innerText = rowNum * 100 + cellNum;
     }
   }
 
-  document.querySelector("td").innerHTML = draggableSymbol;
+  const arrOfCells = document.querySelectorAll("td");
 
-  table.addEventListener("click", highlight);
-
-  function highlight(event) {
-    if (event.target.tagName === "TD") {
-      event.target.classList.toggle("highlight");
-    }
+  for (let i = 0; i < arrOfCells.length; i++) {
+    arrOfCells[i].innerHTML = draggableSymbol;
   }
 
   const tableZone = document.querySelector("table");
-  const cells = document.getElementsByTagName("div");
   tableZone.ondragover = allowDrop;
+
+  let element;
 
   function allowDrop(event) {
     event.preventDefault();
+    debugger;
+    element = event.currentTarget.innerHTML;
   }
 
   table.ondrop = drop;
 
   function drop(event) {
-    event.target.append(document.querySelector("#girl"));
+    event.target.append(element);
+    if ((event.target.innerHTML = "#dimond")) {
+      event.target.innerHTML = fire;
+    }
+    if (event.target.innerHTML != fire) {
+      event.target.innerHTML = "#dimond";
+    } else {
+    }
   }
 }
