@@ -20,7 +20,7 @@ function createTable() {
   }
 
   const tableZone = document.querySelector("table");
-  tableZone.ondragover = allowDrop;
+  tableZone.addEventListener("dragover", allowDrop);
 
   let element;
 
@@ -30,7 +30,7 @@ function createTable() {
     element = event.currentTarget.innerHTML;
   }
 
-  table.ondrop = drop;
+  table.addEventListener("drop", drop);
 
   function drop(event) {
     event.target.append(element);
